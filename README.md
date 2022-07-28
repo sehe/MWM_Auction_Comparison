@@ -9,25 +9,28 @@ sudo apt install build-essential
 sudo apt-get install libboost-all-dev
 ```
 
-After that, to compile the project, you have to jump into the */src* folder and type the following line in your console:
+After that, to compile the project:
 
 ```
-g++ -std=c++2a -o ../bin/app BipartiteGraph.cpp MaximumWeightedMatching.cpp Auction.cpp AuctionArray.cpp Main.cpp
+cmake -B build .
+cmake --build build
 ```
 
-For compier optimization instead type:
+For debug version optimization use:
 ```
-g++ -std=c++2a -Ofast -o ../bin/app BipartiteGraph.cpp MaximumWeightedMatching.cpp Auction.cpp AuctionArray.cpp Main.cpp
+cmake -B build . -DCMAKE_BUILD_TYPE=Debug
 ```
 
-The *.exe* file will be inserted into the */bin* directory.
+The executable file will be inserted into the */bin* directory.
 
 ## Usage
-Start the .exe file by typing ```./app```, next you have to specify the starting and ending number of verticies per part of the bipartite graphs.
+Start the executable file by typing ```./bin/app```, next you have to specify
+the starting and ending number of verticies per part of the bipartite graphs.
 
 ![](images/console_1.png)
 
-After pressing enter, at each random bipartite graphs the application pass them respectively to:
+After pressing enter, at each random bipartite graphs the application pass them
+respectively to:
 * **Maximum Weighted Matching**
 * **Auction Algorithm**
 * **Auction Algorithm (Array Version)**
