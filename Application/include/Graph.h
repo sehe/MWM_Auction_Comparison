@@ -57,28 +57,18 @@ using Nodes::Bidder;
 using Nodes::Item;
 using Nodes::VertexProp;
 
-struct GraphProp {
-    std::vector<int> bidder2item;
-    std::vector<int> item2bidder;
-};
-
 using EdgeProp = boost::property<boost::edge_weight_t, Weight>;
-using Graph = boost::adjacency_list<boost::listS, boost::vecS, boost::undirectedS, VertexProp, EdgeProp, GraphProp>;
-using vertex_iterator = Graph::vertex_iterator;
-using V = Graph::vertex_descriptor;
-using E = Graph::edge_descriptor;
-using VertexFilter = std::function<bool(V)>;
-using EdgeFilter = std::function<bool(E)>;
-using FMap = boost::filtered_graph<Graph, EdgeFilter, VertexFilter>;
+using Graph    = boost::adjacency_list<boost::vecS, boost::vecS,
+                                    boost::undirectedS, VertexProp, EdgeProp>;
 
 struct fmt {
     duration const& _d;
 
     friend std::ostream& operator<<(std::ostream& os, fmt f) {
-        if (f._d >= 1min) return os << (f._d / 1min) << "min " << (f._d % 1min) / 1s << "s";
-        else if (f._d >= 1s) return os << (f._d / 1.0s) << "s";
+        if (f._d >= 1min)     return os << (f._d / 1min) << "min " << (f._d % 1min) / 1s << "s";
+        else if (f._d >= 1s)  return os << (f._d / 1.0s) << "s";
         else if (f._d >= 1ms) return os << (f._d / 1.0ms) << "ms";
-        else return os << (f._d / 1.0us) << "us";
+        else                  return os << (f._d / 1.0us) << "us";
     }
 };
 

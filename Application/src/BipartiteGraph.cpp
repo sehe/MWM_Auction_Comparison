@@ -15,13 +15,6 @@ Data generateData(int N) {
     for (int i = 0; i < N; ++i) boost::add_vertex(Bidder{ i }, g);
     for (int i = 0; i < N; ++i) boost::add_vertex(Item{ i }, g);
 
-    //printGraph(g);
-
-    GraphProp& gp = g[boost::graph_bundle];
-    gp.bidder2item.assign(N, -1);
-    gp.item2bidder.assign(N, -1);
-
-
     // Every left nodes has a connection to every right nodes
     for (int bidder = 0; bidder < N; ++bidder) {
         for (int item = 0; item < N; ++item) {
